@@ -2,18 +2,18 @@ from django.db import models
 
 
 class Client(models.Model):
-    name = models.CharField(max_length=10, blank=False)
-    client_code = models.CharField()
-    no = 
+    name        = models.CharField(max_length=290, blank=False)
+    client_code = models.CharField(max_length=6)
     
 
     def __str__(self):
         return 
 
 class Contact(models.Model):
-    name    = models.CharField()
-    surname = models.CharField()
-    email   = models.CharField()
+    no      = models.ForeignKey(Client, on_delete=models.CASCADE)
+    name    = models.CharField(max_length=290)
+    surname = models.CharField(max_length=290)
+    email   = models.EmailField(max_length=254)
     
 
     def __str__(self):
