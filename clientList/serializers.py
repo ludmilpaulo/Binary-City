@@ -10,4 +10,4 @@ class ClientSerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ('id', 'name', 'surname')
+        fields = ('id', 'no', 'name', 'surname', 'email')
