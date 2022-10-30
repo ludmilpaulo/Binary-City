@@ -74,7 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cliendView.wsgi.application'
 
-
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_CREDENTIALS = False
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
