@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import background from "./assets/last.gif";
+import back from "./assets/done.svg";
 
 
 function App() {
@@ -19,26 +21,27 @@ function App() {
   }, [])
 
   console.log("respose=>", data)
+  
 
   return (
-    <>
-  {data?.map(client => (
-    <div  className="container mx-auto bg-cover">
+    /*
+<div className="bg-cover bg-center ..." style={{ backgroundImage: `url(${back})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'auto'
+   // backgroundRepeat: 'no-repeat'
+  }}></div>
+*/
+  <div style={{
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'
+  }}>
+<img src={background} />
 
-    <p 
-   
-    className="text-gray-500 text-lg">
-        {client.name}
-    </p>
- 
-       
-    <p className="text-3xl text-gray-700 font-bold mb-5">
-      Welcome!
-    </p>
-   
   </div>
-   ))}
-   </>
+  
   );
 }
 
