@@ -1,48 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Table, Button, Row, Col } from "react-bootstrap";
+import Loader from "../components/Loader";
 
+import logo from "../assets/logo.png";
 
 function ClientScreen() {
-  const [data, seData ] = useState<any[]>([]);
+  const [data, seData] = useState<any[]>([]);
 
-  //const clients = JSON.stringify(data)
+  const [loading, error] = useState(true);
 
-  useEffect(() =>{
-    fetch('http://127.0.0.1:8000/list/', {
-      method : 'GET',
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/list/", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-    .then( resp => resp.json())
-    .then( resp => seData(resp.clients))
-    .catch( error => console.log(error))
-  }, [])
+      .then((resp) => resp.json())
+      .then((resp) => seData(resp.clients))
+      .catch((error) => console.log(error));
+  }, []);
 
-  console.log("respose=>", data)
-  
+  console.log("respose=>", data);
 
   return (
-    <div className="h-56 grid grid-cols-3 gap-4 content-start ...">
+    <div className="align-items-center">
+      <Row className="align-items-center">
+        <Col>
+          <h1>Clients</h1>
+        </Col>
 
+        <Col className="text-right">
+          <Button className="my-3">
+            <i className="fas fa-plus"></i> Create Product
+          </Button>
+        </Col>
+      </Row>
 
-<table className="border-separate border border-slate-500 table-auto">
-<thead>
-  <tr>
-    <th className="border border-slate-600 ...">Name</th>
-    <th className="border border-slate-600 ...">Client Code</th>
-  </tr>
-</thead>
-<tbody>
-{data.map(client => (
-  <tr key={client.id}>
-    <td className="border border-slate-700 ...">{client.name}</td>
-    <td className="border border-slate-700 ...">{client.client_code}</td>
-  </tr>
-    ))}
-</tbody>
-</table>    
+      <Table striped bordered hover responsive className="table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            
+    
+          </tr>
+        </thead>
 
-   </div>
+        <tbody>
+          {data.map((user) => (
+            <tr key={user._id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.client_code}</td>
+
+              <td>
+               
+                  <Button variant="light">
+                    <i className="fas fa-edit"></i>
+                  </Button>
+             
+
+                <Button variant="danger" className="btn-sm">
+                  <i className="fas fa-trash"></i>
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 }
 
