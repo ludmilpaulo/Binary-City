@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import Welcome from "./screens/Welcome";
 import ClientScreen from "./screens/ClientScreen";
@@ -7,11 +8,13 @@ import ClientScreen from "./screens/ClientScreen";
 function App() {
   return (
     <Router>
-        <Routes>
+      <ClientScreen />
+      <main className="py-3">
+        <Container>
           <Route path="/" element={<Welcome />} />
           <Route path="/clients/" element={<ClientScreen/>} />
-        </Routes>
-  
+        </Container>
+      </main>
     </Router>
   );
 }
