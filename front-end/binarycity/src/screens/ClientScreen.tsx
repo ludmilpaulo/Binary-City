@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Row, Col } from "react-bootstrap";
+import { Table, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
 import styled from "styled-components";
-
-
 
 function ClientScreen() {
   const [data, seData] = useState<any[]>([]);
@@ -26,53 +24,63 @@ function ClientScreen() {
   console.log("respose=>", data);
 
   return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", flex: 1 }}>
+        <div style={divStyle}>
+          <Link to="/AddClient">
+            <Button>
+              <ButtonOverlay>
+                <Rect6>
+                  <AddNewClient>Add New Client</AddNewClient>
+                </Rect6>
+              </ButtonOverlay>
+            </Button>
+          </Link>
 
-    <div className="flex-auto items-center">
-
-      <div
-        className="bg-cover bg-center ..."
-        style={{
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-      <img src={background}></img>
+          <Rect>
+            <div className="h-56 grid grid-cols-4 gap-4 content-start ...">
+              <table className="border-separate border border-slate-500 table-auto">
+                <thead>
+                  <tr>
+                    <th className="border border-slate-600 ...">Name</th>
+                    <th className="border border-slate-600 ...">Client Code</th>
+                    <th className="border border-slate-600 ...">NO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((client) => (
+                    <tr key={client.id}>
+                      <td className="border border-slate-700 ...">
+                        {client.name}
+                      </td>
+                      <td className="border border-slate-700 ...">
+                        {client.client_code}
+                      </td>
+                      <td className="border border-slate-700 ...">
+                        {client.client_code}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Rect>
+        </div>
       </div>
-    
-      <Link to="/NewClient">
-        <Button>
-          <ButtonOverlay>
-            <Rect6>
-              <AddNewClient>Add New Client</AddNewClient>
-            </Rect6>
-          </ButtonOverlay>
-        </Button>
-      </Link>
-      
-        <Rect>
-          <Rect2StackStack>
-            <Rect2Stack>
-              <Rect2></Rect2>
-              <Clients>Clients</Clients>
-              <ClientCode>Client Code</ClientCode>
-              <Lps001>LPS001</Lps001>
-              <Contac>Contac</Contac>
-            </Rect2Stack>
-            <Rect5></Rect5>
-            <Name>Name</Name>
-            <LoremIpsum>Ludmil Paulo Samuel Avelino</LoremIpsum>
-            <LoremIpsum2>3</LoremIpsum2>
-          </Rect2StackStack>
-        </Rect>
-      
-
+    </div>
   );
 }
 
-const Image = styled.img`
+const divStyle = {
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  width: "100vw",
+  height: "100vh",
+  backgroundImage: "url(" + background + ")",
+};
+
+const Main = styled.img`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -80,12 +88,12 @@ const Image = styled.img`
 `;
 
 const ButtonOverlay = styled.button`
- display: block;
- background: none;
- height: 100%;
- width: 100%;
- border:none
- `;
+  display: block;
+  background: none;
+  height: 100%;
+  width: 100%;
+  border: none;
+`;
 const Button = styled.div`
   width: 387px;
   height: 52px;
@@ -99,7 +107,7 @@ const Button = styled.div`
 const Rect6 = styled.div`
   width: 387px;
   height: 52px;
-  background-color: rgba(229,13,13,1);
+  background-color: rgba(229, 13, 13, 1);
   border-radius: 100px;
   flex-direction: column;
   display: flex;
@@ -109,7 +117,7 @@ const AddNewClient = styled.span`
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   font-size: 29px;
   margin-top: 12px;
   margin-left: 94px;
@@ -128,7 +136,7 @@ const ScrollArea = styled.div`
 const Rect = styled.div`
   width: 937px;
   height: 467px;
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
   flex-direction: column;
   display: flex;
   flex: 0 0 auto;
@@ -140,7 +148,7 @@ const Rect2 = styled.div`
   width: 937px;
   height: 66px;
   position: absolute;
-  background-color: rgba(208,2,27,1);
+  background-color: rgba(208, 2, 27, 1);
 `;
 
 const Clients = styled.span`
@@ -203,7 +211,7 @@ const Rect5 = styled.div`
   width: 7px;
   height: 1px;
   position: absolute;
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
 `;
 
 const Name = styled.span`
@@ -244,4 +252,5 @@ const Rect2StackStack = styled.div`
   height: 158px;
   position: relative;
 `;
+
 export default ClientScreen;

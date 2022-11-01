@@ -1,59 +1,74 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import background from "../assets/images/binary-animation.gif";
-import logo from "../assets/logo.png";
+import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
+import styled from "styled-components";
 
 function Welcome() {
-  console.log("chegou");
-
-  const shoot = () => {
-  
-  };
-
   return (
-    <div className="flex-auto items-center">
-      <div className="absolute top-0 right-0 block w-9/12 h-full min-w-full">
-        <img
-          alt="Snowy mountain lake"
-          className="h-full min-w-full"
-          src={logo}
-        />
-      </div>
-
-      <div
-        className="bg-cover bg-center ..."
-        style={{
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-      <img src={background}></img>
-      </div>
-    
-      <div className="grid justify-items-center ...">
-
-      <Link to={"/clients/"}> 
-
-      <button
-          onClick={shoot}
-          type="button"
-          className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 items-center"
-        >
-          Welcome to Binary City
-        </button>
-
-
-      </Link>
-        
-       
-     
-      </div>
+    <div style={divStyle}>
+      <Image2 src={require("../assets/images/logo1.png")}></Image2>
+      <Group>
+        <Link to={"/clients/"}>
+          <Rect>
+            <LoremIpsum>Welcome to BinaryCity</LoremIpsum>
+          </Rect>
+        </Link>
+      </Group>
     </div>
   );
 }
+
+const divStyle = {
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  width: "100vw",
+  height: "100vh",
+  backgroundImage: "url(" + background + ")",
+};
+
+const Image3 = styled.img`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const Image2 = styled.img`
+  width: 1131px;
+  height: 100%;
+  margin-top: 22px;
+  align-self: center;
+  object-fit: contain;
+`;
+
+const Group = styled.div`
+  width: 509px;
+  height: 87px;
+  flex-direction: column;
+  display: flex;
+  margin-top: 34px;
+  margin-left: 444px;
+`;
+
+const Rect = styled.div`
+  width: 509px;
+  height: 87px;
+  background-color: rgba(208, 2, 27, 1);
+  border-radius: 100px;
+  flex-direction: column;
+  display: flex;
+`;
+
+const LoremIpsum = styled.span`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+  font-size: 30px;
+  margin-top: 26px;
+  margin-left: 87px;
+`;
 
 export default Welcome;

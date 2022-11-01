@@ -40,7 +40,7 @@ function ClientList(props) {
 
 const Image = styled.img`
   display: flex;
-  flex-direction: column;
+  flex-direction:  ;
   height: 100vh;
   width: 100vw;
 `;
