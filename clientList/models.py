@@ -2,10 +2,24 @@ from django.db import models
 
 
 class Client(models.Model):
-    name        = models.CharField(max_length=290, blank=False)
-    client_code = models.CharField(max_length=6)
-    surname = models.CharField(max_length=290)
-    email   = models.EmailField(max_length=254)
+    client_name  = models.CharField(max_length=290, blank=False, null=False)
+    client_code = models.CharField(max_length=6, blank=False, null=False)
+   # csurname = models.CharField(max_length=290, blank=False, null=False)
+   # email   = models.EmailField(max_length=254, blank=False, null=False)
+    
+
+    def __str__(self):
+        return self.client_name 
+
+    class Meta:
+       ordering = ['client_name']
+
+
+class Contact(models.Model):
+    link    = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='contacts', null=True)
+    name    = models.CharField(max_length=290, blank=False, null=False)
+    surname = models.CharField(max_length=290, blank=False, null=False)
+    email   = models.EmailField(max_length=254, blank=False, null=False)
     
 
     def __str__(self):
@@ -13,18 +27,4 @@ class Client(models.Model):
 
     class Meta:
        ordering = ['name']
-
-
-class Contact(models.Model):
-    link      = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, null=True)
-    name    = models.CharField(max_length=290)
-    surname = models.CharField(max_length=290)
-    email   = models.EmailField(max_length=254)
-    
-
-    def __str__(self):
-        return 
-
-    def __unicode__(self):
-        return 
 

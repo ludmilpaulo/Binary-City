@@ -19,6 +19,16 @@ def get_clients(request):
         }).data
     return Response({"clients": clients})
 
+@api_view(['GET'])
+def get_contacts(request):
+    contacts = ContactSerializer(
+        Contact.objects.all().order_by('-name'),
+        many=True,
+        context={
+            "request": request
+        }).data
+    return Response({"contacts": contacts})
+
 
 class ClientViewset(viewsets.ModelViewSet):
     queryset = Client.objects.all()

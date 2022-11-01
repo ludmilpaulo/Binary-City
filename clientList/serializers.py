@@ -3,11 +3,14 @@ from rest_framework import serializers
 from .models import Client, Contact
 
 class ClientSerializer(serializers.ModelSerializer):
+    contacts = serializers.StringRelatedField(many=True)
     class Meta:
         model = Client
-        fields = ('id', 'name', 'client_code')
+        fields = '__all__'
 
 class ContactSerializer(serializers.ModelSerializer):
+   
+   
     class Meta:
         model = Contact
-        fields = ('id', 'no', 'name', 'surname', 'email')
+        fields = '__all__'
