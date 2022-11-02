@@ -7,34 +7,30 @@ import styled from "styled-components";
 function Welcome() {
   return (
     <div style={divStyle}>
-       <div style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", flex: 1 }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flex: 1 }}>
+          <div style={divStyle}>
+            <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
+              <div className="App-header">
+                <img
+                  src={require("../assets/logo.png")}
+                  className="App-logo"
+                  alt="logo"
+                />
+              </div>
 
-
-
-        <div style={divStyle}>
-          <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
-          
-          <div className="App-header">
-          <img src={require("../assets/logo.png")} className="App-logo" alt="logo" />
-
+              <Link to={"/clients"}>
+                <button
+                  type="submit"
+                  className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-900 border border-transparent rounded-md active:bg-red-900 false"
+                >
+                  Welcome To Binary-City
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-            
-
-            <Link to={"/clients"}>
-              <button
-                type="submit"
-                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-900 border border-transparent rounded-md active:bg-red-900 false"
-              >
-                Welcome To Binary-City
-              </button>
-            </Link>
-
-            </div>
-            </div>
-            </div>
-            </div>
-      
+      </div>
     </div>
   );
 }

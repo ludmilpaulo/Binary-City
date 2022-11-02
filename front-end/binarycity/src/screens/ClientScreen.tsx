@@ -9,19 +9,17 @@ function ClientScreen() {
   const [data, seData] = useState<any[]>([]);
   const navigate = useNavigate();
 
-  const lo = 'error'
-  const s = 3
-  console.log("size", lo.slice(0, s))
-
+  const lo = "error";
+  const s = 3;
+  console.log("size", lo.slice(0, s));
 
   if (data.length === 0) {
     alert("No clients Found");
-   // navigate("/AddClient/");
+    // navigate("/AddClient/");
   }
-  
 
   const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/list/", {
+    fetch("http://127.0.0.1:8000/contacts/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -32,6 +30,8 @@ function ClientScreen() {
       .catch((error) => console.log(error));
   };
 
+  console.log("retrievd", data)
+
   useEffect(() => {
     fetchCients();
   }, []);
@@ -41,28 +41,25 @@ function ClientScreen() {
       <div style={{ display: "flex", flex: 1 }}>
         <div style={divStyle}>
           <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
-
-          <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy text-red ">
-          Client List
-        </h1>
+            <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy text-red ">
+              Client List
+            </h1>
             <table className="border-separate border border-slate-500 table-auto bg-white">
               <thead>
                 <tr>
                   <th className="border border-slate-600 ...">Name</th>
                   <th className="border border-slate-600 ...">Client Code</th>
-                 
                 </tr>
               </thead>
               <tbody>
                 {data.map((client) => (
                   <tr key={client.id}>
                     <td className="border border-slate-700 ...">
-                      {client.name}
+                      {client.client_name}
                     </td>
                     <td className="border border-slate-700 ...">
-                      {client.client_code.slice(0,s)}0{client.id}
+                      {client.client_code.slice(0, s)}0{client.id}
                     </td>
-                   
                   </tr>
                 ))}
               </tbody>

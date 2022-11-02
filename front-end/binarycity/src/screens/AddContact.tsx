@@ -2,18 +2,34 @@ import React, { useState, useEffect } from "react";
 
 import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
 import { Link } from "react-router-dom";
+import { Dropdown } from "reactstrap";
 
 
 export default function AddContact() {
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [surname, setSurname] = useState("");
 
   const [data, setData ] = useState<any[]>([]);
 
+  const [ link , setLink] = useState("");
+
+ /* const  link  = Object.assign({}, ...data)
+
+  const dataprovider = data.map(object => {
+    return { key: object.id, value: object, text: object.client_name };
+  });
+
+
+  const changeHandler = () => {
+    console.log("VALUE", dataprovider);
+  };
+  */
+
+  
 
   const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/contacts/", {
+    fetch("http://127.0.0.1:8000/clients/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,11 +40,9 @@ export default function AddContact() {
       .catch((error) => console.log(error));
   };
 
-  const tags = Object.keys(data).reduce((result, key) => {
-    return result.concat(data[0].link);
-  }, [])
 
-  console.log("testing", tags);
+
+  console.log("testing", link);
 
   useEffect(() => {
     fetchCients();
@@ -123,7 +137,7 @@ export default function AddContact() {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div>
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 undefined"
@@ -133,20 +147,39 @@ export default function AddContact() {
               <div className="flex flex-col items-start">
                 <input
                   type="email"
-                  name="email"
+                  name="name"
                   value={email}
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col items-start">
-              <select>
-                <option value="female">female</option>
-                <option value="male">male</option>
-                <option value="other">other</option>
-              </select>
-              </div>
+            </div>
 
+            <div className="mt-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 undefined"
+              >
+                Select the Client to link
+              </label>
+              
+              <select 
+
+              value={link}
+              onChange={(e)=> setLink(e.target.value)}
+
+              
+              className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+              {data?.map((client) => (
+            
+                <option  key={client.id} 
+                
+                >{client?.client_name}</option>
+               
+          
+              ))}
+              
+              </select>
 
 
             </div>

@@ -12,14 +12,14 @@ from . serializers import ClientSerializer, ContactSerializer
 @api_view(['GET'])
 def get_clients(request):
     clients = ClientSerializer(
-        Client.objects.all().order_by('-name'),
+        Client.objects.all().order_by('-client_name'),
         many=True,
         context={
             "request": request
         }).data
     return Response({"clients": clients})
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def get_contacts(request):
     contacts = ContactSerializer(
         Contact.objects.all().order_by('-name'),
