@@ -12,7 +12,10 @@ export default function AddContact() {
 
   const [data, setData ] = useState<any[]>([]);
 
-  const [ link , setLink] = useState("");
+  const [ link , setLink] = useState<any | null>(-1);
+
+  //const [selected, setSelected] = useState(-1); 
+  const value = link !== -1 && data[link];
 
  /* const  link  = Object.assign({}, ...data)
 
@@ -63,13 +66,19 @@ export default function AddContact() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("https://webhook.site/f3877b1a-5831-48c6-a5f5-e10576341a4d", {
+      let res = await fetch("http://127.0.0.1:8000/contacts/", {
         method: "POST",
+        mode: 'no-cors',
+       // cache: 'no-cache',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           name: name,
           surname: surname,
           email:email,
-          link: link
+          link: value.id
         }),
       });
       let resJson = await res.json();
@@ -166,14 +175,15 @@ return( <div style={{ display: "flex", flexDirection: "column" }}>
 
               
               className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
-              {data?.map((client) => (
-            
+              {data?.map((client, index) => {
+                return (
                 <option  key={client.id} 
-                
-                >{client?.client_name}</option>
+                value={index}
+                >
+                  {client?.client_name}</option>
                
           
-              ))}
+                  )})}
               
               </select>
 
