@@ -16,7 +16,7 @@ class Client(models.Model):
 
 
 class Contact(models.Model):
-    link    = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='contacts', null=True)
+    link    = models.ManyToManyField(Client, blank=True, related_name='contacts', null=True)
     name    = models.CharField(max_length=290, blank=False, null=False)
     surname = models.CharField(max_length=290, blank=False, null=False)
     email   = models.EmailField(max_length=254, blank=False, null=False)
@@ -28,3 +28,11 @@ class Contact(models.Model):
     class Meta:
        ordering = ['name']
 
+
+class Links(models.Model):
+    clientlink = models.ManyToManyField(Contact, blank=True, related_name='contactlink', null=True)
+    contactlink = models.ManyToManyField(Client, blank=True, related_name='clientlink', null=True)
+
+    
+
+   

@@ -18,7 +18,7 @@ export default function AddClient() {
 
 
   
-  /*
+  
   let code = name;
   let cdata = code.split(" "),
     output = "";
@@ -26,21 +26,20 @@ export default function AddClient() {
   for (var i = 0; i < cdata.length; i++) {
     output += cdata[i].substring(0, 1);
   }
-  let code2 = surname[0].toUpperCase();
-  let clientCode = output.toUpperCase() + surname[0].toUpperCase();
-  console.log("testing", clientCode);
+  //let code2 = surname[0].toUpperCase();
+ // let clientCode = output.toUpperCase() + surname[0].toUpperCase();
+  console.log("testing", output);
 
-  */
+  
 
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("https://webhook.site/f3877b1a-5831-48c6-a5f5-e10576341a4d", {
+      let res = await fetch("http://127.0.0.1:8000/clients/", {
         method: "POST",
         body: JSON.stringify({
-          name: 'name',
-          email: 'email',
-          mobileNumber: 'mobileNumber',
+          name: name,
+          client_code: output,
         }),
       });
       let resJson = await res.json();
@@ -89,27 +88,7 @@ export default function AddClient() {
                   </div>
                 </div>
 
-                
-                <div className="mt-4">
-                  <label
-                 
-                    className="block text-sm font-medium text-gray-700 undefined"
-                  >
-                    Select the Linked Contact
-                  </label>
-                  <div className="flex flex-col items-start">
-                  <div className="inline-block relative w-64">
-                        <select className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                          <option>Really long option that will likely overlap the chevron</option>
-                          <option>Option 2</option>
-                          <option>Option 3</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+               
 
                 <div className="flex items-center justify-end mt-4">
                  <Link to={'/ContactScreen'}>

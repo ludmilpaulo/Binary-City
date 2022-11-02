@@ -5,8 +5,8 @@ from rest_framework.decorators import action, api_view
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
-from .models import Client, Contact
-from . serializers import ClientSerializer, ContactSerializer 
+from .models import Client, Contact, Links
+from . serializers import ClientSerializer, ContactSerializer, LinksSerializer 
 
 
 @api_view(['GET'])
@@ -38,4 +38,20 @@ class ClientViewset(viewsets.ModelViewSet):
 class ContactViewset(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+class LinksViewset(viewsets.ModelViewSet):
+    queryset = Links.objects.all()
+    serializer_class = LinksSerializer
+
+
+@api_view(['GET', 'POST'])
+def get_links(request):
+    links = LinksSerializer(
+        Links.objects.all(),
+        many=True,
+        context={
+            "request": request
+        }).data
+    return Response({"links": links})
+
 

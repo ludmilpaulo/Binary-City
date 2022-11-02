@@ -13,13 +13,26 @@ function ClientScreen() {
   const s = 3;
   console.log("size", lo.slice(0, s));
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const verify =() =>{
+
+
+    if (data?.length === 0 ) {
+      alert("No clients Found");
+     navigate("/AddClient/");
+    } else {
+      alert("Lienty list");
+    }
+  }
+/*
   if (data.length === 0) {
     alert("No clients Found");
     // navigate("/AddClient/");
   }
+  */
 
   const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/contacts/", {
+    fetch("http://127.0.0.1:8000/list/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +47,7 @@ function ClientScreen() {
 
   useEffect(() => {
     fetchCients();
+   // verify();
   }, []);
 
   return (
@@ -41,7 +55,7 @@ function ClientScreen() {
       <div style={{ display: "flex", flex: 1 }}>
         <div style={divStyle}>
           <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
-            <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy text-red ">
+            <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy text-red  bg-white">
               Client List
             </h1>
             <table className="border-separate border border-slate-500 table-auto bg-white">
@@ -49,6 +63,7 @@ function ClientScreen() {
                 <tr>
                   <th className="border border-slate-600 ...">Name</th>
                   <th className="border border-slate-600 ...">Client Code</th>
+                  <th className="border border-slate-600 ...">No of contacts</th>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +73,10 @@ function ClientScreen() {
                       {client.client_name}
                     </td>
                     <td className="border border-slate-700 ...">
-                      {client.client_code.slice(0, s)}0{client.id}
+                      {client.client_code.slice(0, s).toUpperCase()}0{client.id}
+                    </td>
+                    <td className="border border-slate-700 ...">
+                      {client.contacts?.length}
                     </td>
                   </tr>
                 ))}

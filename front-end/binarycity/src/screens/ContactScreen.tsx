@@ -8,6 +8,8 @@ export default function ContactScreen() {
   const [data, seData] = useState<any[]>([]);
   const navigate = useNavigate();
 
+  console.log("conta li", data)
+
   if (data.length === 0) {
     alert("No Contacts Found");
     navigate("/AddContact/");
@@ -43,7 +45,7 @@ export default function ContactScreen() {
                 <tr>
                   <th className="border border-slate-600 ...">Name</th>
                   <th className="border border-slate-600 ...">Email</th>
-                  <th className="border border-slate-600 ...">NO</th>
+                  <th className="border border-slate-600 ...">NO of Clients</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +58,7 @@ export default function ContactScreen() {
                       {contact.email}
                     </td>
                     <td className="border border-slate-700 ...">
-                      {contact.link}
+                      {contact.link.length}
                     </td>
                   </tr>
                 ))}
