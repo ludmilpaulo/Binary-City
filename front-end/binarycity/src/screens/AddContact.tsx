@@ -26,6 +26,18 @@ export default function AddContact() {
   };
   */
 
+   /*
+    let code = name;
+    let cdata = code.split(" "),
+      output = "";
+
+    for (var i = 0; i < cdata.length; i++) {
+      output += cdata[i].substring(0, 1);
+    }
+    let code2 = surname[0].toUpperCase();
+    let clientCode = output.toUpperCase() + surname[0].toUpperCase();
+   */
+
   
 
   const fetchCients = () => {
@@ -49,47 +61,31 @@ export default function AddContact() {
   }, []);
 
   let handleSubmit = async (e: any) => {
-    let code = name;
-    let cdata = code.split(" "),
-      output = "";
-
-    for (var i = 0; i < cdata.length; i++) {
-      output += cdata[i].substring(0, 1);
-    }
-    let code2 = surname[0].toUpperCase();
-    let clientCode = output.toUpperCase() + surname[0].toUpperCase();
-   
-
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/clients/", {
+      let res = await fetch("https://webhook.site/f3877b1a-5831-48c6-a5f5-e10576341a4d", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           name: name,
-          email: email,
           surname: surname,
-          client_code: clientCode,
+          email:email,
+          link: link
         }),
       });
       let resJson = await res.json();
-      if (res.status === 201) {
+      if (res.status === 200) {
         setName("");
-        setEmail("");
-        setSurname("");
-        alert("Contact created successfully");
+
+        alert("User created successfully");
       } else {
-        alert("Some error occured please verifiy your Infromation");
+        alert("Some error occured");
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  return( <div style={{ display: "flex", flexDirection: "column" }}>
+return( <div style={{ display: "flex", flexDirection: "column" }}>
   <div style={{ display: "flex", flex: 1 }}>
     <div style={divStyle}>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
