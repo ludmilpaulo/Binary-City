@@ -1,10 +1,13 @@
 from dataclasses import dataclass
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import action, api_view
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from django.contrib.auth.models import User
+from rest_framework import status, generics, permissions, viewsets
+from rest_framework.response import Response
+
+from rest_framework.decorators import api_view
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import JSONParser, JSONParser, MultiPartParser, FormParser, FileUploadParser
+
 from .models import Client, Contact, Links
 from . serializers import ClientSerializer, ContactSerializer, LinksSerializer 
 
@@ -53,5 +56,24 @@ def get_links(request):
             "request": request
         }).data
     return Response({"links": links})
+
+
+@api_view(["POST"])
+@parser_classes([JSONParser, MultiPartParser, FormParser, FileUploadParser])
+def create_client(request, format=None):
+    data = request.data
+    customer = Client.objects.all()
+    customer.client_name = data["client_name"]
+    customer.client_code = data["client_code"]
+    customer.save()
+
+    contact = Contact.objects.all()
+    contact.link = data["link"]
+    contact.name = data["name"]
+    contact.surname = data["surname"]
+    contact.email = data["email"]
+    contact.save()
+
+    return JsonResponse({"status": "Os Seus Dados enviados com sucesso"})
 
 

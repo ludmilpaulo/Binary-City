@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from django.conf.urls import include
-from clientList.views import ClientViewset, ContactViewset, get_clients, get_contacts, LinksViewset, get_links
+from clientList.views import ClientViewset, ContactViewset, get_clients, get_contacts, LinksViewset, get_links, create_client
 
 router = routers.DefaultRouter()
 router.register('clients', ClientViewset)
@@ -14,5 +14,6 @@ urlpatterns = [
     path('contact/', get_contacts),
     path('list/', get_clients),
     path('link/', get_links),
+    path('create/', create_client),
     path('admin/', admin.site.urls),
 ]

@@ -35,7 +35,7 @@ export default function AddClient() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/clients/", {
+      let res = await fetch("http://127.0.0.1:8000/create/", {
         method: "POST",
         body: JSON.stringify({
           name: name,

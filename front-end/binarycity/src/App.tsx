@@ -6,6 +6,7 @@ import ClientScreen from "./screens/ClientScreen";
 import AddClient from "./screens/AddClient";
 import AddContact from "./screens/AddContact";
 import ContactScreen from "./screens/ContactScreen";
+import Links from "./screens/Link";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/AddClient/" element={<AddClient />} />
         <Route path="/AddContact/" element={<AddContact />} />
         <Route path="/ContactScreen/" element={<ContactScreen />} />
+        <Route path="/Link/" element={<Links/>} />
       </Routes>
     </Router>
   );
