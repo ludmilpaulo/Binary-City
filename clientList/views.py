@@ -59,7 +59,7 @@ def get_links(request):
 
 
 @api_view(["POST"])
-@parser_classes([JSONParser, MultiPartParser, FormParser, FileUploadParser])
+#@parser_classes([JSONParser, MultiPartParser, FormParser, FileUploadParser])
 def create_client(request, format=None):
     data = request.data
     customer = Client.objects.all()
@@ -67,12 +67,12 @@ def create_client(request, format=None):
     customer.client_code = data["client_code"]
     customer.save()
 
-    contact = Contact.objects.all()
-    contact.link = data["link"]
-    contact.name = data["name"]
-    contact.surname = data["surname"]
-    contact.email = data["email"]
-    contact.save()
+   # contact = Contact.objects.all()
+   # contact.link = data["link"]
+   # contact.name = data["name"]
+   # contact.surname = data["surname"]
+   # contact.email = data["email"]
+    # contact.save()
 
     return JsonResponse({"status": "Os Seus Dados enviados com sucesso"})
 

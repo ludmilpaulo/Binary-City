@@ -83,6 +83,11 @@ function ClientScreen() {
               </tbody>
             </table>
 
+            <div className="flex items-center justify-end mt-4">
+             <Link to={'/clients'}>
+                <h1 className="text-sm text-gray-600 underline hover:text-gray-900"> Check Client List</h1>
+           </Link>
+
             <Link to={"/AddClient"}>
               <button
                 type="submit"
@@ -91,6 +96,7 @@ function ClientScreen() {
                 Add New Client
               </button>
             </Link>
+            </div>
           </div>
         </div>
       </div>
