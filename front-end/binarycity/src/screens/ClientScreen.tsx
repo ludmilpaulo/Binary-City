@@ -61,21 +61,21 @@ function ClientScreen() {
             <table className="border-separate border border-slate-500 table-auto bg-white">
               <thead>
                 <tr>
-                  <th className="border border-slate-600 ...">Name</th>
-                  <th className="border border-slate-600 ...">Client Code</th>
-                  <th className="border border-slate-600 ...">No of contacts</th>
+                  <th className="border border-slate-600 text-left">Name</th>
+                  <th className="border border-slate-600 text-left">Client Code</th>
+                  <th className="border border-slate-600 text-center">No of contacts</th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((client) => (
                   <tr key={client.id}>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-left">
                       {client.client_name}
                     </td>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-left">
                       {client.client_code.slice(0, s).toUpperCase()}0{client.id}
                     </td>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-center">
                       {client.contacts?.length}
                     </td>
                   </tr>

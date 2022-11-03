@@ -38,16 +38,17 @@ export default function AddClient() {
       let res = await fetch("http://127.0.0.1:8000/clients/", {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+          'Accept': '*/*'
       },
         mode: 'no-cors',
         body: JSON.stringify({
-          name: name,
+          client_name: name,
           client_code: output,
         }),
       });
       let resJson = await res.json();
+      console.log("RESPONSE", resJson)
       if (res.status === 200) {
         setName("");
 

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x1_(u+5^ytp7muh%s3j^m+jgw_1u+f9m)hg=y-uc9y!wi=q-!z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.MultiPartParser'
      )
  }
@@ -81,8 +82,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cliendView.wsgi.application'
 
-CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_ALL_CREDENTIALS = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
