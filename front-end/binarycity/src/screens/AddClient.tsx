@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormFeedback,
-  FormText,
-} from "reactstrap";
 import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function AddClient() {
 
   const [name, setName] = useState("");
+
+  const navigate = useNavigate();
+
 
 
 
@@ -35,13 +30,13 @@ export default function AddClient() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/clients/", {
+      let res = await fetch("http://127.0.0.1:8000/create/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*/*'
       },
-        mode: 'no-cors',
+        //mode: 'no-cors',
         body: JSON.stringify({
           client_name: name,
           client_code: output,
@@ -51,6 +46,7 @@ export default function AddClient() {
       console.log("RESPONSE", resJson)
       if (res.status === 200) {
         setName("");
+        navigate("/clients/");
 
         alert("User created successfully");
       } else {

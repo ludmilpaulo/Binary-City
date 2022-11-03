@@ -6,7 +6,7 @@ import ClientScreen from "./screens/ClientScreen";
 import AddClient from "./screens/AddClient";
 import AddContact from "./screens/AddContact";
 import ContactScreen from "./screens/ContactScreen";
-import Links from "./screens/Link";
+import Links from "./screens/ContactLink";
 
 function App() {
   return (

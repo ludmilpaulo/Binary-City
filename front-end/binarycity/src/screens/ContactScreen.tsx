@@ -10,22 +10,34 @@ export default function ContactScreen() {
 
   console.log("conta li", data)
 
-  if (data.length === 0) {
-    alert("No Contacts Found");
-    navigate("/AddContact/");
-  }
+  
 
-  const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/contact/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((resp) => seData(resp.contacts))
-      .catch((error) => console.log(error));
-  };
+  const fetchCients =async () => {
+
+    
+
+      try {
+        let res = await fetch("http://127.0.0.1:8000/contact/", {
+          method: "GET",
+         
+         // cache: 'no-cache',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+        });
+        let resJson = await res.json();
+        if (resJson?.contacts === 0) {
+          alert("No Contacts Found");
+          navigate("/AddContact/");
+         
+        } else {
+          seData(resJson?.contacts)
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    
+    }
 
   useEffect(() => {
     fetchCients();
@@ -43,21 +55,21 @@ export default function ContactScreen() {
             <table className="border-separate border border-slate-500 table-auto bg-white">
               <thead>
                 <tr>
-                  <th className="border border-slate-600 ...">Name</th>
-                  <th className="border border-slate-600 ...">Email</th>
-                  <th className="border border-slate-600 ...">NO of Clients</th>
+                  <th className="border border-slate-600 text-left">Name</th>
+                  <th className="border border-slate-600 text-left">Email</th>
+                  <th className="border border-slate-600 text-center">NO of Clients</th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((contact) => (
                   <tr key={contact.id}>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-left">
                       {contact.surname} {contact.name}
                     </td>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-left">
                       {contact.email}
                     </td>
-                    <td className="border border-slate-700 ...">
+                    <td className="border border-slate-700 text-center">
                       {contact.link.length}
                     </td>
                   </tr>
@@ -65,11 +77,10 @@ export default function ContactScreen() {
               </tbody>
             </table>
             <div className="flex items-center justify-end mt-4">
-              <Link to={"/ContactScreen"}>
-                <h2 className="text-sm text-white underline hover:text-gray-900">
-                  {" "}
+              <Link to={"/Link"}>
+                <h1 className="text-sm text-white underline hover:text-gray-900">
                   Link with client
-                </h2>
+                </h1>
               </Link>
 
               <Link to={"/AddContact"}>

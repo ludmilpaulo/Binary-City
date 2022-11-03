@@ -14,36 +14,34 @@ function ClientScreen() {
   console.log("size", lo.slice(0, s));
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const verify =() =>{
 
+  const fetchCients =async () => {
 
-    if (data?.length === 0 ) {
-      alert("No clients Found");
-     navigate("/AddClient/");
-    } else {
-      alert("Lienty list");
+    try {
+      let res = await fetch("http://127.0.0.1:8000/list/", {
+        method: "GET",
+       
+       // cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+      });
+      let resJson = await res.json();
+      if (resJson?.clients === 0) {
+        alert("No clients Found");
+        navigate("/AddClient/");
+       
+      } else {
+        seData(resJson?.clients)
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
-/*
-  if (data.length === 0) {
-    alert("No clients Found");
-    // navigate("/AddClient/");
-  }
-  */
 
-  const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/list/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((resp) => seData(resp.clients))
-      .catch((error) => console.log(error));
-  };
+  
 
-  console.log("retrievd", data)
+  console.log("retrievd bate", data)
 
   useEffect(() => {
     fetchCients();
@@ -84,8 +82,8 @@ function ClientScreen() {
             </table>
 
             <div className="flex items-center justify-end mt-4">
-             <Link to={'/clients'}>
-                <h1 className="text-sm text-gray-600 underline hover:text-gray-900"> Check Client List</h1>
+             <Link to={'/Link'}>
+                <h2 className="text-sm text-white-600 underline hover:text-white-900"> Link With Contact</h2>
            </Link>
 
             <Link to={"/AddClient"}>

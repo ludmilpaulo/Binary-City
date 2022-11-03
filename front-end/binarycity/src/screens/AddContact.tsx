@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
-import { Link } from "react-router-dom";
-import { Dropdown } from "reactstrap";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 export default function AddContact() {
@@ -10,39 +10,19 @@ export default function AddContact() {
   const [email, setEmail] = useState("");
   const [surname, setSurname] = useState("");
 
+  const navigate = useNavigate();
+
   const [data, setData ] = useState<any[]>([]);
 
   const [ link , setLink] = useState<any | null>(-1);
 
-  //const [selected, setSelected] = useState(-1); 
+ 
   const value = link !== -1 && data[link];
 
- /* const  link  = Object.assign({}, ...data)
-
-  const dataprovider = data.map(object => {
-    return { key: object.id, value: object, text: object.client_name };
-  });
-
-
-  const changeHandler = () => {
-    console.log("VALUE", dataprovider);
-  };
-  */
-
-   /*
-    let code = name;
-    let cdata = code.split(" "),
-      output = "";
-
-    for (var i = 0; i < cdata.length; i++) {
-      output += cdata[i].substring(0, 1);
-    }
-    let code2 = surname[0].toUpperCase();
-    let clientCode = output.toUpperCase() + surname[0].toUpperCase();
-   */
-
+  let contact_id = [
+   value.id
+]
   
-
   const fetchCients = () => {
     fetch("http://127.0.0.1:8000/clients/", {
       method: "GET",
@@ -57,7 +37,6 @@ export default function AddContact() {
 
 
 
-  console.log("testing", link);
 
   useEffect(() => {
     fetchCients();
@@ -68,8 +47,6 @@ export default function AddContact() {
     try {
       let res = await fetch("http://127.0.0.1:8000/contacts/", {
         method: "POST",
-        mode: 'no-cors',
-       // cache: 'no-cache',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
@@ -78,14 +55,21 @@ export default function AddContact() {
           name: name,
           surname: surname,
           email:email,
-          link: value.id
+          link: contact_id
         }),
       });
       let resJson = await res.json();
-      if (res.status === 200) {
+     
+      if (res.status === 201) {
+        alert("Contact created successfully");
+        navigate("/ContactScreen/");
         setName("");
+        setSurname("");
+        setEmail("");
+        setLink("");
 
-        alert("User created successfully");
+       
+   
       } else {
         alert("Some error occured");
       }
