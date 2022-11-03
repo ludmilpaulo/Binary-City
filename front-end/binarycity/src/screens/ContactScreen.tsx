@@ -26,7 +26,7 @@ export default function ContactScreen() {
           },
         });
         let resJson = await res.json();
-        if (resJson?.contacts === 0) {
+        if (resJson?.contacts?.length === 0) {
           alert("No Contacts Found");
           navigate("/AddContact/");
          

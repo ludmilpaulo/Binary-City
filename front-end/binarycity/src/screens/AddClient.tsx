@@ -30,7 +30,7 @@ export default function AddClient() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/create/", {
+      let res = await fetch("http://127.0.0.1:8000/list/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -44,11 +44,11 @@ export default function AddClient() {
       });
       let resJson = await res.json();
       console.log("RESPONSE", resJson)
-      if (res.status === 200) {
+      if (res.status === 201) {
         setName("");
         navigate("/clients/");
 
-        alert("User created successfully");
+        alert("CLIENT created successfully");
       } else {
         alert("Some error occured");
       }

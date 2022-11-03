@@ -80,7 +80,7 @@ def create_client(request, fortmat=None):
     for i in customer :
         i.client_name = data["client_name"]
         i.client_code = data["client_code"]
-    i.save()
+        i.save()
 
    # contact = Contact.objects.all()
    # contact.link = data["link"]

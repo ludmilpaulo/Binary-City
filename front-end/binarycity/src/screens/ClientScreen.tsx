@@ -20,14 +20,14 @@ function ClientScreen() {
     try {
       let res = await fetch("http://127.0.0.1:8000/list/", {
         method: "GET",
-       
-       // cache: 'no-cache',
+
         headers: {
             'Content-Type': 'application/json',
         },
       });
       let resJson = await res.json();
-      if (resJson?.clients === 0) {
+      console.log("retrievd bate", resJson)
+      if (resJson?.clients?.length === 0) {
         alert("No clients Found");
         navigate("/AddClient/");
        
