@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Row, Col } from "react-bootstrap";
+import Navbar from "./NavBar";
 import background from "../assets/images/62262234-binary-city-on-grey-vector-illustration-template-for-advertising.webp";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,36 +8,29 @@ export default function ContactScreen() {
   const [data, seData] = useState<any[]>([]);
   const navigate = useNavigate();
 
-  console.log("conta li", data)
+  console.log("conta li", data);
 
-  
+  const fetchCients = async () => {
+    try {
+      let res = await fetch("http://127.0.0.1:8000/contact/", {
+        method: "GET",
 
-  const fetchCients =async () => {
-
-    
-
-      try {
-        let res = await fetch("http://127.0.0.1:8000/contact/", {
-          method: "GET",
-         
-         // cache: 'no-cache',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-        });
-        let resJson = await res.json();
-        if (resJson?.contacts?.length === 0) {
-          alert("No Contacts Found");
-          navigate("/AddContact/");
-         
-        } else {
-          seData(resJson?.contacts)
-        }
-      } catch (err) {
-        console.log(err);
+        // cache: 'no-cache',
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let resJson = await res.json();
+      if (resJson?.contacts?.length === 0) {
+        alert("No Contacts Found");
+        navigate("/AddContact/");
+      } else {
+        seData(resJson?.contacts);
       }
-    
+    } catch (err) {
+      console.log(err);
     }
+  };
 
   useEffect(() => {
     fetchCients();
@@ -47,6 +40,7 @@ export default function ContactScreen() {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", flex: 1 }}>
         <div style={divStyle}>
+          < Navbar />
           <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 ">
             <h1 className="text-3xl font-semibold text-center text-indigo-700 underline uppercase decoration-wavy bg-white">
               Contact List
@@ -57,7 +51,9 @@ export default function ContactScreen() {
                 <tr>
                   <th className="border border-slate-600 text-left">Name</th>
                   <th className="border border-slate-600 text-left">Email</th>
-                  <th className="border border-slate-600 text-center">NO of Clients</th>
+                  <th className="border border-slate-600 text-center">
+                    NO of Clients
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -77,11 +73,11 @@ export default function ContactScreen() {
               </tbody>
             </table>
             <div className="flex items-center justify-end mt-4">
-              <Link to={"/Link"}>
+              <a href="http://127.0.0.1:8000/admin/clientList/contact/" >
                 <h1 className="text-sm text-white underline hover:text-gray-900">
                   Link with client
                 </h1>
-              </Link>
+              </a>
 
               <Link to={"/AddContact"}>
                 <button

@@ -16,6 +16,7 @@
     "chroma-js": "^2.4.2",
     "history": "4.10.1",
     "init": "^0.1.2",
+    "multiselect-react-dropdown": "^2.0.25",
     "react": "17.0.1",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^17.0.1",

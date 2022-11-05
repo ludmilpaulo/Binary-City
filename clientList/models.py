@@ -30,8 +30,9 @@ class Contact(models.Model):
 
 
 class Links(models.Model):
-    clientlink = models.ManyToManyField(Client, blank=True, related_name='clientlink', null=True)
-    contactlink = models.ManyToManyField(Contact, blank=True, related_name='contactlink', null=True)
+    clientlink = models.ManyToManyField(Client, blank=True, related_name='clientlink')
+    contactlink = models.ManyToManyField(Contact, blank=True, related_name='contactlink')
+    
 
     
 

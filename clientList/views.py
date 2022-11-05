@@ -72,7 +72,7 @@ def get_links(request):
 
 @api_view(['GET', 'POST', 'DELETE'])
 @parser_classes([JSONParser, MultiPartParser, FormParser, FileUploadParser])
-def create_client(request, fortmat=None):
+def create_client(request, format=None):
     
     data = request.data
     print(data)
@@ -82,13 +82,56 @@ def create_client(request, fortmat=None):
         i.client_code = data["client_code"]
         i.save()
 
-   # contact = Contact.objects.all()
-   # contact.link = data["link"]
-   # contact.name = data["name"]
-   # contact.surname = data["surname"]
-   # contact.email = data["email"]
-    # contact.save()
 
     return Response({"status": "Os Seus Dados enviados com sucesso"})
+
+
+@api_view(['PUT', 'POST'])
+def updateClient(request, format=None):
+    data = request.data
+    client = Client.objects.get(id=data['id'])
+    contact = Contact.objects.get(id=data['contacts'])
+    client.contacts.set(contact)
+  
+
+    client.save()
+
+    serializer = ClientSerializer(client, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def taskUpdate(request):
+        data = request.data
+       
+        pk = data['id']
+        task = Client.objects.get(id=pk)
+
+        request_data = data.get("contacts")
+        a = request.data.get('contacts', None)
+
+        print(pk)
+        
+        serializer = ClientSerializer(instance=task, data=a)
+
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def taskUpdate(request):
+    data = request.data
+    client = Client.objects.get(id=data['id'])
+
+    client.client_name = data['client_name']
+    client.client_code = data['client_code']
+    client.contacts =data["contacts"]
+
+    client.save()
+
+    serializer = ClientSerializer(client, many=False)
+    return Response(serializer.data)
 
 

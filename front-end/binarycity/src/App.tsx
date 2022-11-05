@@ -17,7 +17,7 @@ function App() {
         <Route path="/AddClient/" element={<AddClient />} />
         <Route path="/AddContact/" element={<AddContact />} />
         <Route path="/ContactScreen/" element={<ContactScreen />} />
-        <Route path="/Link/" element={<Links/>} />
+        <Route path="/Link/" element={<Links />} />
       </Routes>
     </Router>
   );
