@@ -73,7 +73,7 @@ export default function ContactScreen() {
               </tbody>
             </table>
             <div className="flex items-center justify-end mt-4">
-              <a href="http://127.0.0.1:8000/admin/clientList/contact/" >
+              <a href="https://ludmil.pythonanywhere.com/admin/clientList/contact/" >
                 <h1 className="text-sm text-white underline hover:text-gray-900">
                   Link with client
                 </h1>

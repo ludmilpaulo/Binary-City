@@ -20,7 +20,7 @@ export default function AddContact() {
   let contact_id = [value.id];
 
   const fetchCients = () => {
-    fetch("http://127.0.0.1:8000/clients/", {
+    fetch("https://ludmil.pythonanywhere.com/clients/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -49,7 +49,7 @@ export default function Navbar() {
               <li className="nav-item">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="http://127.0.0.1:8000/admin/clientList/contact/"
+                  href="https://ludmil.pythonanywhere.com/admin/clientList/contact/"
                 >
                   <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Links</span>
                 </a>

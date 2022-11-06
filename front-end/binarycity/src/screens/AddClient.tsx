@@ -22,7 +22,7 @@ export default function AddClient() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/list/", {
+      let res = await fetch("https://ludmil.pythonanywhere.com/list/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
