@@ -38,7 +38,7 @@ export default function AddContact() {
   let handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/contacts/", {
+      let res = await fetch("https://ludmil.pythonanywhere.com/contacts/", {
         method: "POST",
         headers: {
           Accept: "application/json",

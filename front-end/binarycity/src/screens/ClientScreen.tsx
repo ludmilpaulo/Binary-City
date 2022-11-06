@@ -18,7 +18,7 @@ function ClientScreen() {
 
   const fetchCients = async () => {
     try {
-      let res = await fetch("https://www.ludmil.pythonanywhere.com/list/", {
+      let res = await fetch("https://ludmil.pythonanywhere.com/list/", {
         method: "GET",
 
         headers: {
@@ -84,7 +84,7 @@ function ClientScreen() {
             </table>
 
             <div className="flex items-center justify-end mt-4">
-              <a href="http://127.0.0.1:8000/admin/clientList/contact/">
+              <a href="https://ludmil.pythonanywhere.com/admin/clientList/contact/">
                 <h2 className="text-sm text-white-600 underline hover:text-white-900">
                   {" "}
                   Link With Contact

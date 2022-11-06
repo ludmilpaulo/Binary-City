@@ -12,7 +12,7 @@ export default function ContactScreen() {
 
   const fetchCients = async () => {
     try {
-      let res = await fetch("http://127.0.0.1:8000/contact/", {
+      let res = await fetch("https://ludmil.pythonanywhere.com/contact/", {
         method: "GET",
 
         // cache: 'no-cache',
