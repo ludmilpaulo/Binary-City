@@ -18,7 +18,7 @@ function ClientScreen() {
 
   const fetchCients = async () => {
     try {
-      let res = await fetch("https://ludmil.pythonanywhere.com/list/", {
+      let res = await fetch("https://www.ludmil.pythonanywhere.com/list/", {
         method: "GET",
 
         headers: {
